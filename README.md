@@ -1,3 +1,3 @@
 # Software-Challenge
 
-### ER-Diagramm ![ER-Modell](ER-Modell.png)
+### ER-Modell ![ER-Modell](ER-Modell.png)
