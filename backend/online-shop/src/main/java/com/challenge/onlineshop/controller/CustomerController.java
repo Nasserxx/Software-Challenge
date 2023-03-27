@@ -43,7 +43,7 @@ public class CustomerController {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<HttpStatus> createCustomer(@Valid @RequestBody Customer customer) {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);

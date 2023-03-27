@@ -3,7 +3,6 @@ package com.challenge.onlineshop;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -20,7 +19,7 @@ import com.challenge.onlineshop.exceptions.ProductNotFoundException;
 
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({ ProductNotFoundException.class, DuplicateEmailException.class})
+    @ExceptionHandler({ ProductNotFoundException.class, DuplicateEmailException.class })
     public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
 
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));
