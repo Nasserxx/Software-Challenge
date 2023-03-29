@@ -1,12 +1,9 @@
 package com.challenge.onlineshop.service;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.challenge.onlineshop.exceptions.CustomerNotFoundException;
 import com.challenge.onlineshop.exceptions.DuplicateEmailException;
 import com.challenge.onlineshop.model.Customer;
@@ -16,8 +13,8 @@ import com.challenge.onlineshop.repository.CustomerRepository;
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    // @Autowired
+    // private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Customer getCustomerById(Long id) {
@@ -33,25 +30,32 @@ public class CustomerServiceImp implements CustomerService {
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
             throw new DuplicateEmailException(customer.getEmail());
         }
-        customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
+        customer.setBirthDate(LocalDate.parse(customer.getBirthDate().toString()));
         customerRepository.save(customer);
     }
 
     @Override
     public void updateCustomer(Long id, Customer customer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCustomer'");
+        Customer customerToUpdate = customerRepository.findById(id).get();
+        customerToUpdate.setFirstName(customer.getFirstName());
+        customerToUpdate.setLastName(customer.getLastName());
+        customerToUpdate.setEmail(customer.getEmail());
+        customerToUpdate.setPassword(customer.getPassword());
+        customerToUpdate.setTitle(customer.getTitle());
+        customerToUpdate.setBirthDate(LocalDate.parse(customer.getBirthDate().toString()));
+        customerToUpdate.setBirthDate(customer.getBirthDate());
+        customerRepository.save(customerToUpdate);
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCustomer'");
+        customerRepository.deleteById(id);
     }
 
     @Override
     public List<Customer> getCustomers() {
-        return (List<Customer>) customerRepository.findAll();
+        List<Customer> customers = (List<Customer>) customerRepository.findAll();
+        return customers;
     }
 
     @Override

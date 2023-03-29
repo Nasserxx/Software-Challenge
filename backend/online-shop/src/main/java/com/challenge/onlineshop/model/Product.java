@@ -15,29 +15,33 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "product")
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     @Column(name = "id")
     private Long id;
 
-    @NotBlank(message = "number cannot be blank")
+    @NonNull
     @Column(name = "number", unique = true, nullable = false)
     private String number;
 
     @NotBlank(message = "name cannot be blank")
+    @NonNull
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotBlank(message = "price cannot be blank")
+    @NonNull
     @Column(name = "price", nullable = false)
     private Double price;
 

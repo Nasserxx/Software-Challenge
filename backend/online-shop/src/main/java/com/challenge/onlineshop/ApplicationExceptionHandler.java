@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.challenge.onlineshop.exceptions.CustomerNotFoundException;
 import com.challenge.onlineshop.exceptions.DuplicateEmailException;
 import com.challenge.onlineshop.exceptions.ErrorResponse;
 import com.challenge.onlineshop.exceptions.ProductNotFoundException;
 
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({ ProductNotFoundException.class, DuplicateEmailException.class })
+    @ExceptionHandler({ ProductNotFoundException.class, DuplicateEmailException.class,CustomerNotFoundException.class })
     public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
 
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));

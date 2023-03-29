@@ -1,4 +1,6 @@
 package com.challenge.onlineshop.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -31,7 +33,6 @@ public class Adress {
     @Column(name = "street", nullable = false,length = 100)
     private String street;
 
-    @NotBlank(message = "house number cannot be blank")
     @Column(name = "house_number", nullable = false)
     private Integer houseNumber;
 
@@ -46,7 +47,7 @@ public class Adress {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private AdressType type;
-
+    
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;

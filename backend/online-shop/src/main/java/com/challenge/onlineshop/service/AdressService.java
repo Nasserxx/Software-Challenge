@@ -7,11 +7,12 @@ import com.challenge.onlineshop.model.Adress;
 public interface AdressService {
     Adress getAdressById(Long id);
 
-    void saveAdress(Adress adress);
+    void saveAdress(Adress adress, Long customerId);
 
     void updateAdress(Long id, Adress adress);
 
     void deleteAdress(Long id);
 
     List<Adress> getAdresss();
+    List<Adress> getAdresssByCustomerId(Long id);
 }

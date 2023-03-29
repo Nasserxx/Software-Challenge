@@ -20,25 +20,28 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public void saveProduct(Product product) {
+        productRepository.save(product);
 
     }
 
     @Override
     public void updateProduct(Long id, Product product) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateProduct'");
+        Product productToUpdate = productRepository.findById(id).get();
+        productToUpdate.setName(product.getName());
+        productToUpdate.setNumber(product.getNumber());
+        productToUpdate.setPrice(product.getPrice());
+        productRepository.save(productToUpdate);
     }
 
     @Override
     public void deleteProduct(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteProduct'");
+    productRepository.deleteById(id);
     }
 
     @Override
     public List<Product> getProducts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProducts'");
+        List<Product> products = (List<Product>) productRepository.findAll();
+       return products;
     }
 
 }

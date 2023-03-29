@@ -20,19 +20,21 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public void saveOrder(Order order) {
-        //OrderRepository.save(order);
+        orderRepository.save(order);
     }
 
     @Override
     public void updateOrder(Long id, Order order) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateOrder'");
+        
+        Order orderToUpdate = orderRepository.findById(id).get();
+        orderToUpdate.setCustomer(order.getCustomer());
+        orderToUpdate.setOrderDate(order.getOrderDate());
+        orderRepository.save(orderToUpdate);
     }
 
     @Override
     public void deleteOrder(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteOrder'");
+    orderRepository.deleteById(id);
     }
 
     @Override

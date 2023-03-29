@@ -7,7 +7,7 @@ public class CustomerNotFoundException extends RuntimeException {
     }
 
     public CustomerNotFoundException(Long id) {
-        super("The Product with id: " + id + " does not exist!");
+        super("The Customer with id: " + id + " does not exist!");
     }
 
 }

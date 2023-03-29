@@ -50,7 +50,7 @@ public class Customer {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    
     @Column(name = "birth_date")
     private LocalDate birthDate;
 

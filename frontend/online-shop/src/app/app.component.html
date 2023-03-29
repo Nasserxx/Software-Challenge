@@ -1,0 +1,18 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <span class="navbar-brand">online-shop</span>
+    <ul class="navbar-nav ml-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Products</a>
+      </li>
+      <li class="nav-item">
+        <a href="/customers" class="nav-link" routerLink="customers">Customers
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
